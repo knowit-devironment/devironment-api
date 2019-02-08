@@ -7,20 +7,20 @@ import org.springframework.web.bind.annotation.*
 
 
 @RestController
-@RequestMapping("/test")
+@RequestMapping("/users")
 class UserController @Autowired
 constructor(val userService: UserService) {
 
-    @PostMapping
+    @PostMapping("/login")
     @ResponseStatus(HttpStatus.OK)
     fun login(@RequestBody loginRequest: LoginRequest): ResponseEntity<User?> {
         return userService.login(
-            userName = loginRequest.userName,
-            password = loginRequest.userName
+            userId = loginRequest.userId,
+            password = loginRequest.userId
         )
     }
 
-    @PostMapping
+    @PostMapping("")
     @ResponseStatus(HttpStatus.OK)
     fun createUser(@RequestBody userRequest: UserRequest) : ResponseEntity<User?> {
         return userService.createUser(userRequest)
