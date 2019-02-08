@@ -4,13 +4,14 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.stereotype.Service
+import java.time.LocalDate
 
 @Service
 class UserService @Autowired
 constructor(val userRepository: UserRepository) {
 
-    fun login(userName: String, password: String): ResponseEntity<User?> {
-        val user = userRepository.findByUserName(userName)
+    fun login(userId: String, password: String): ResponseEntity<User?> {
+        val user = userRepository.findByUserId(userId)
 
         user?.let {
             return if (password == it.password) {
@@ -24,13 +25,15 @@ constructor(val userRepository: UserRepository) {
 
     fun createUser(userRequest: UserRequest): ResponseEntity<User?> {
         // TODO: Add check for if user name exists
+        println("Creating user: $userRequest")
         val newUser = userRepository.save(User(
-            userName = userRequest.userName,
+            userId = userRequest.userId,
             password = userRequest.password,
             firstName = userRequest.firstName,
             lastName = userRequest.lastName,
-            dateOfBirth = userRequest.dateOfBirth
+            dateOfBirth = LocalDate.parse(userRequest.dateOfBirth)
         ))
+        println("SUCCESS - Created user entity: $newUser")
         userRepository.flush()
         return ResponseEntity.ok().body(newUser)
     }
