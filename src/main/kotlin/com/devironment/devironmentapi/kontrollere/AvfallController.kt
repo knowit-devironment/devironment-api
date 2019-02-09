@@ -4,6 +4,7 @@ import com.devironment.devironmentapi.dao.RegistrertAvfall
 import org.springframework.http.HttpStatus
 import org.springframework.web.bind.annotation.*
 
+@CrossOrigin
 @RestController
 @RequestMapping("avfall")
 class AvfallController {
