@@ -15,7 +15,7 @@ constructor(
 ) {
 
     fun createWasteBag(wasteBagRequest: WasteBagRequest): ResponseEntity<WasteBagResponse> {
-        // TODO: Check if waste bag exists?
+        // TODO: Check if waste bag exists and send bad request?
         println("Creating waste bag: $wasteBagRequest")
         val user = userRepository.findByUserId(wasteBagRequest.userId)
 

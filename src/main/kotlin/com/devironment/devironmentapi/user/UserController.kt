@@ -25,4 +25,9 @@ constructor(val userService: UserService) {
     fun createUser(@RequestBody userRequest: UserRequest) : ResponseEntity<User?> {
         return userService.createUser(userRequest)
     }
+
+    @GetMapping("/{userId}")
+    fun getUser(@PathVariable(value = "userId") userId: String): User? {
+        return userService.getUser(userId)
+    }
 }
