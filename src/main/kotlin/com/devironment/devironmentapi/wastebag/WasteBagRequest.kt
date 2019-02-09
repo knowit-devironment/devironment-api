@@ -6,5 +6,6 @@ data class WasteBagRequest(
     val bagId: String,
     val wasteCategory: WasteCategory,
     val dateOfDisposal: String,
+    val delivered: Boolean = false,
     val userId: String
 )
