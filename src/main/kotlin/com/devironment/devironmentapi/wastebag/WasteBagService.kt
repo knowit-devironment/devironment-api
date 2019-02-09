@@ -10,29 +10,31 @@ import java.time.LocalDate
 @Service
 class WasteBagService @Autowired
 constructor(
-    val wasteBagRepository: WasteBagRepository,
-    val userRepository: UserRepository
+        val wasteBagRepository: WasteBagRepository,
+        val userRepository: UserRepository
 ) {
 
     fun createWasteBag(wasteBagRequest: WasteBagRequest): ResponseEntity<WasteBagResponse> {
-        // TODO: Check if waste bag exists?
+        // TODO: Check if waste bag exists and send bad request?
         println("Creating waste bag: $wasteBagRequest")
         val user = userRepository.findByUserId(wasteBagRequest.userId)
 
         user?.let {
             val wasteBag = wasteBagRepository.save(WasteBag(
-                bagId = wasteBagRequest.bagId,
-                wasteCategory = wasteBagRequest.wasteCategory,
-                dateOfDisposal = LocalDate.parse(wasteBagRequest.dateOfDisposal),
-                user = user
+                    bagId = wasteBagRequest.bagId,
+                    wasteCategory = wasteBagRequest.wasteCategory,
+                    dateOfDisposal = LocalDate.parse(wasteBagRequest.dateOfDisposal),
+                    user = user,
+                    delivered = wasteBagRequest.delivered
             ))
 
             println("SUCCESS - Created waste bag: $wasteBag")
             return ResponseEntity.ok().body(WasteBagResponse(
-                bagId = wasteBag.bagId,
-                wasteCategory = wasteBag.wasteCategory,
-                dateOfDisposal = wasteBag.dateOfDisposal.toString(),
-                userId = wasteBag.user.userId
+                    bagId = wasteBag.bagId,
+                    wasteCategory = wasteBag.wasteCategory,
+                    dateOfDisposal = wasteBag.dateOfDisposal.toString(),
+                    userId = wasteBag.user.userId,
+                    delivered = wasteBag.delivered
             ))
         }
 

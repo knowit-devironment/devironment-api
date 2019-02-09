@@ -38,4 +38,8 @@ constructor(val userRepository: UserRepository) {
         return ResponseEntity.ok().body(newUser)
     }
 
+    fun getUser(userId: String): User? {
+        return userRepository.findByUserId(userId)
+    }
+
 }

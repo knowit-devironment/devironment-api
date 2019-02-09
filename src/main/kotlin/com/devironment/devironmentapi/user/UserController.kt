@@ -5,7 +5,7 @@ import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
 
-
+@CrossOrigin
 @RestController
 @RequestMapping("/users")
 class UserController @Autowired
@@ -24,5 +24,10 @@ constructor(val userService: UserService) {
     @ResponseStatus(HttpStatus.OK)
     fun createUser(@RequestBody userRequest: UserRequest) : ResponseEntity<User?> {
         return userService.createUser(userRequest)
+    }
+
+    @GetMapping("/{userId}")
+    fun getUser(@PathVariable(value = "userId") userId: String): User? {
+        return userService.getUser(userId)
     }
 }

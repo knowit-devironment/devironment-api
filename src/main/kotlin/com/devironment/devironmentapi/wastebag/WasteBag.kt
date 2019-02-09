@@ -13,5 +13,6 @@ data class WasteBag(
     @Id val bagId: String,
     val wasteCategory: WasteCategory,
     val dateOfDisposal: LocalDate,
+    val delivered: Boolean,
     @JsonIgnore @ManyToOne @JoinColumn(name = "user_id") val user: User
 )
