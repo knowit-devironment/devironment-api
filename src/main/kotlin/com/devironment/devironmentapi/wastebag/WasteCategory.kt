@@ -3,7 +3,7 @@ package com.devironment.devironmentapi.wastebag
 import java.beans.PropertyEditorSupport
 
 enum class WasteCategory {
-    FOOD, PLASTIC, MSW
+    FOOD, PLASTIC, MSW, GLASS_METAL, ELECTRONICS
 }
 
 class WasteCategoryConverter : PropertyEditorSupport() {

@@ -25,7 +25,7 @@ constructor(
                     wasteCategory = wasteBagRequest.wasteCategory,
                     dateOfDisposal = LocalDate.parse(wasteBagRequest.dateOfDisposal),
                     user = user,
-                    delivered = false
+                    delivered = wasteBagRequest.delivered
             ))
 
             println("SUCCESS - Created waste bag: $wasteBag")
@@ -34,7 +34,7 @@ constructor(
                     wasteCategory = wasteBag.wasteCategory,
                     dateOfDisposal = wasteBag.dateOfDisposal.toString(),
                     userId = wasteBag.user.userId,
-                    delivered = false
+                    delivered = wasteBag.delivered
             ))
         }
 
